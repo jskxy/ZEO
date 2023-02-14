@@ -4,7 +4,7 @@ With the maturity of pre-training techniques, there has been growing interest in
 The directory tree of ZEO:
 ```
 ZEO
-├── Domain test data
+├── Domain data
 │   │   ├── data_for_ner
 │   │   ├── data_for_qa
 │   │   ├── data_for_sum
