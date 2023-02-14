@@ -5,7 +5,6 @@ The directory tree of ZEO:
 ```
 ZEO
 ├── Domain test data
-│   │   ├── data_for_mul
 │   │   ├── data_for_ner
 │   │   ├── data_for_qa
 │   │   ├── data_for_sum
