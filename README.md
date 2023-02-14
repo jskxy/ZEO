@@ -29,16 +29,6 @@ megatron
 ```
 
 ## Preprocess Data
-Statistical results on downstream tasks
-
-| Dataset | FT     | Validation | Test   | Length    | Classes     |
-| :-----  | :----: | :----:     | :----: | :----:    | :----:      |
-| ET      | 1024   | 128        | 128    | 74        | 8           |
-| RC      | 1280   | 160        | 160    | 137       | 10          |
-| QA      | 960    | 120        | 120    | 876       | \           |
-| Sum     | 1208   | 151        | 151    | 958       | \           |
-
-Preprocess Data:
 * Preproce data by create_pre_train_data.py
 * Generate knowledge vector by generate_knowledge_vector.py
 
@@ -65,13 +55,12 @@ python pretrain.py \
        --num-layers 23 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 2 \
+       --batch-size 1 \
        --seq-length 1024 \
        --max-position-embeddings 1024 \
        --lr-decay-iters 20000 \
-       --save ./350m_1neg/ \
-       --load ./pangu-alpha_350m_fp16/ \
-       --data-path /megatron/dataset/text_document \
+       --save  \
+       --load  \
        --vocab-file /megatron/tokenizer/bpe_4w_pcl/vocab \
        --merge-file gpt2-merges.txt \
        --data-impl mmap \
@@ -111,13 +100,12 @@ python pretrain.py \
        --num-layers 23 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 2 \
+       --batch-size 1 \
        --seq-length 1024 \
        --max-position-embeddings 1024 \
        --lr-decay-iters 3000 \
-       --save ./350m_ner_inject_model \
-       --load ./350m_1neg \
-       --data-path /megatron/dataset/text_document \
+       --save  \
+       --load  \
        --vocab-file /megatron/tokenizer/bpe_4w_pcl/vocab \
        --merge-file gpt2-merges.txt \
        --data-impl mmap \
@@ -148,45 +136,5 @@ python pretrain.py \
 
 * Testing code is in ./test
 
-## Result
-
-* Experiment results on entity typing.
-
-| Models | Precision   | Recall  | F1  |
-| :----: | :----: | :----:| :----:|
-| Pangu-α<sub>350M</sub> | 88.29 | 86.33 | 86.37 |
-| Pangu-α<sub>2.6B</sub> | 91.86 | 88.28 | 88.01 |
-| ZEO    | 92.09 | 91.40 | 91.24 |
-
-* Experiment results on relation classification.
-
-| Models | Precision   | Recall  | F1  |
-| :----: | :----: | :----:| :----:|
-| Pangu-α<sub>350M</sub> | 65.19 | 68.13 | 65.36 |
-| Pangu-α<sub>2.6B</sub> | 52.45 | 45.31 | 42.96 |
-| ZEO    | 83.54 | 78.44 | 77.35 |
-
-* Experiment results on question answering.
-
-| Models | Pangu-α+ $\mathcal{L}$ <sub>gen</sub>   | Pangu-α+ $\mathcal{L}$ <sub>con</sub> | ZEO  |
-| :----: | :----:   | :----:| :----: |
-| Acc    | 43.64    | 23.65 | 58.62  |    
-
-* Experiment results on summarization.
-
-| Models | RG-1   | RG-2  | RG-L  |
-| :----: | :----: | :----:| :----:|
-| Pangu-α+ $\mathcal{L}$ <sub>gen</sub> | 37.17  | 23.56 | 33.35 |
-| Pangu-α+ $\mathcal{L}$ <sub>con</sub> | 30.86  | 17.36 | 28.28 |
-| ZEO    | 42.51  | 29.22 | 38.35 |
-
-* Experiment results on how different pre-training tasks influence ZEO’s performance on downstream tasks. We also show the impacts of multi-learning strategy and denote our model trained in multi-learning setting with ZEO-multi.
-
-| Model     | P(ET)  | R(ET)  | F1(ET) | Acc    | P(RC)  | R(RC)  | F1(RC) | RG-1  | RG-2  | RG-L  |
-| :-----    | :----: | :----: | :----- | :---:  | :----: | :----: | :----: | :----:| :----:| :----:|
-| Pangu-α+ $\mathcal{L}$ <sub>gen</sub>   | 89.19  | 87.50  | 86.99  | 46.31  | 79.21  | 74.69  | 72.00  | 40.75 | 27.37 | 36.93 |
-| Pangu-α+ $\mathcal{L}$ <sub>gen</sub>    | 63.00  | 64.45  | 58.70  |  \     | 12.20  | 20.94  | 13.91  | 10.12 | 3.86  | 9.67  |
-| ZEO       | 92.09  | 91.40  | 91.24  | 58.62  | 83.54  | 78.44  | 77.35  | 42.51 | 29.21 | 38.35 |
-| ZEO-multi | 94.94  | 94.53  | 94.59  | 57.64  | 80.69  | 79.69  | 79.23  | 43.38 | 30.42 | 39.59 |  
 
 ## Reference
