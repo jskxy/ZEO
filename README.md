@@ -8,12 +8,10 @@ ZEO
 │   │   ├── data_for_mul
 │   │   ├── data_for_ner
 │   │   ├── data_for_qa
-│   │   ├── data_for_rel
 │   │   ├── data_for_sum
 ├── Trainning
 │   ├── megatron
 │   ├── pretrain.py
-├── examples
 ├── test
 ├── tools
 ```
