@@ -41,9 +41,8 @@ python tools/create_pre_train_data.py \
 
 ## Knowledge Injection
 
-* Ner Joint Training:
+* Joint Training:
 ```
-#! /bin/bash
 #! /bin/bash
 
 python pretrain.py \
@@ -89,7 +88,6 @@ python pretrain.py \
 
 * Fine-tune a model by:
 ```
-#! /bin/bash
 #! /bin/bash
 python pretrain.py \
        --model-parallel-size 1 \
